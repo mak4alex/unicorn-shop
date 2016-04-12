@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-
+import Header from './Header';
+import CategoryNav from './CategoryNav';
+import Footer from './Footer';
 
 export default class Main extends Component {
   static propTypes = {
@@ -7,10 +9,15 @@ export default class Main extends Component {
   };
 
   render() {
+    const { category, fetchMenuCategory } = this.props;
+
     return (
       <div>
-          {/* this will render the child routes */}
-          {this.props.children}
+          <Header />
+          <CategoryNav category={category} fetchMenuCategory={fetchMenuCategory} />
+          <main>{this.props.children}</main>
+          <Footer />
+         
       </div>
     );
   }
