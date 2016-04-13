@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 
 
-export default class ProductPage extends Component {
+export default class ProductsPage extends Component {
+
+	componentDidMount() {
+		console.log('show ProductsPage')
+	}
+
   render() {
     return (
       <div>

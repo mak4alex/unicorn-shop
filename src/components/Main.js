@@ -16,8 +16,7 @@ export default class Main extends Component {
           <Header />
           <CategoryNav category={category} fetchMenuCategory={fetchMenuCategory} />
           <main>{this.props.children}</main>
-          <Footer />
-         
+          <Footer />        
       </div>
     );
   }

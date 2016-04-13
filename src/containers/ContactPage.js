@@ -6,7 +6,7 @@ export default class ContactPage extends Component {
     return (
       <div>
         <h1>ContactPage</h1>
-      </div>    
+      </div>
     );
   }
 }
