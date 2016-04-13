@@ -12,7 +12,7 @@ export default class Main extends Component {
     const { category, fetchMenuCategory } = this.props;
 
     return (
-      <div>
+      <div className="container-fluid">
           <Header />
           <CategoryNav category={category} fetchMenuCategory={fetchMenuCategory} />
           <main>{this.props.children}</main>

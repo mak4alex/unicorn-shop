@@ -24,7 +24,7 @@ export default class CategoryNav extends Component {
           {
             categories.map(topCat => {
               return (
-                <ul forHTML= key={topCat.id}>
+                <ul key={topCat.id}>
                   <li>{topCat.title}</li>
                   <li>
                     <ul className="">
