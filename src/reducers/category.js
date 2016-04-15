@@ -9,7 +9,6 @@ const initialState = fromJS({
 
 
 export default function category(state = initialState, action) {
-
   switch (action.type) {
     case GET_CATEGORY_REQUEST:
       return state.set('isFetching', true);

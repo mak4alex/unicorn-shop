@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 export default class Pagination extends Component {
 
 	render(){
-		const totalPages = this.props.meta.get('pagination').total_pages;
-		const currentPage = this.props.meta.get('pagination').page;
+		const pagination = this.props.meta.get('pagination');
+		const totalPages = pagination ? pagination.total_pages : 0;
+		const currentPage = pagination ? pagination.page : 0;
 
 		return (
 			<ul>

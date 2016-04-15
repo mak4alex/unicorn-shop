@@ -20,7 +20,8 @@ export default class ProductList extends Component {
           <h2>ProductList</h2>
           {
             products.get('entities').map(product => {
-              return (<ProductItem key={product.id} product={product} />);
+              return (<ProductItem key={product.id} product={product}
+                        addToCart={this.props.addToCart} />);
             })
           }
         </div>

@@ -1,7 +1,8 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Category from '../components/Category';
-import * as Actions from '../actions/product';
+import { fetchProducts } from '../actions/product';
+import { addToCart } from '../actions/cart';
 
 function mapStateToProps(state) {
   return {
@@ -10,7 +11,11 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(Actions, dispatch);
+  return bindActionCreators(
+    {
+      fetchProducts,
+      addToCart,
+    }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Category);

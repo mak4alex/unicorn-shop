@@ -39,12 +39,13 @@ export default class Category extends Component {
 
   render() {
     const categoryId = this.props.params.categoryId;
-    const products = this.props.products;
+    const { products } = this.props;
+
 
     return (
       <div>
         <h1>CategoryPage, {categoryId}</h1>
-        <ProductList products={products} />
+        <ProductList addToCart={this.props.addToCart} products={products} />
         <Pagination handler={this.changePage} meta={products.get('meta')} />
       </div>
     );

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-
+import Cart from './../containers/Cart';
 
 export default class Header extends Component {
 
@@ -15,6 +15,7 @@ export default class Header extends Component {
 						<li><Link to={'/contact'}>Contact</Link></li>
 					</ul>
 				</nav>
+				<Cart />
 			</header>
 		);
 	}
