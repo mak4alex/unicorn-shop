@@ -7,6 +7,7 @@ import { persistState } from 'redux-devtools';
 import rootReducer from '../reducers';
 import DevTools from '../containers/DevTools';
 import immutablejs from 'redux-storage-decorator-immutablejs';
+import filter from 'redux-storage-decorator-filter'
 import * as storage from 'redux-storage';
 
 const logger = createLogger({
@@ -20,10 +21,14 @@ const reducer = storage.reducer(rootReducer);
 
 import createEngine from 'redux-storage-engine-localstorage';
 let engine = createEngine('unicorn-shop');
+
 engine = immutablejs(engine, [
   ['cart'],
 ]);
 
+engine = filter(engine, [
+  ['cart'],
+]);
 
 const storeMiddleware = storage.createMiddleware(engine);
 
