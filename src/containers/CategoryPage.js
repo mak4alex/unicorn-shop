@@ -2,7 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Category from '../components/Category';
 import { fetchProducts } from '../actions/product';
-import { addToCart } from '../actions/cart';
+import { addProductToCart } from '../actions/cart';
 
 function mapStateToProps(state) {
   return {
@@ -14,7 +14,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
       fetchProducts,
-      addToCart,
+      addProductToCart,
     }, dispatch);
 }
 

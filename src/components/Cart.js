@@ -2,11 +2,23 @@ import React, { Component } from 'react';
 
 
 export default class Cart extends Component {
+
+  constructor(props) {
+    super(props);
+    this.removeProductFromCart = this.removeProductFromCart.bind(this);
+    this.changeCount = this.changeCount.bind(this);
+  }
+
+  removeProductFromCart() {
+    this.props.removeProductFromCart(lineItem.getIn(['product', 'id']));
+  }
+
+  changeCount(e, productId) {
+    this.props.changeProductCount(productId, Number(e.target.value));
+  }
+
   render() {
     const lineItems = this.props.cart.get('lineItems');
-
-
-
 
     return (
       <div>
@@ -14,8 +26,16 @@ export default class Cart extends Component {
         <div>
           {
             lineItems.map((lineItem, i) => {
-              return (<p key={i}>{lineItem.getIn(['product', 'title'])} { ' x ' }
-                        {lineItem.get('count')}</p>);
+              const product = lineItem.get('product');
+
+              return (
+                <p key={i}>
+                  {product.get('title')} { ' x ' }
+                  <input type="number" min="1" step="1" value={lineItem.get('count')}
+                    onChange={ (e) => this.changeCount(e, product.get('id')) } />
+                  <button onClick={this.removeProductFromCart}>Delete</button>
+                </p>
+              );
             })
           }
         </div>

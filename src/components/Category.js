@@ -45,7 +45,8 @@ export default class Category extends Component {
     return (
       <div>
         <h1>CategoryPage, {categoryId}</h1>
-        <ProductList addToCart={this.props.addToCart} products={products} />
+        <ProductList addProductToCart={this.props.addProductToCart}
+          products={products} />
         <Pagination handler={this.changePage} meta={products.get('meta')} />
       </div>
     );

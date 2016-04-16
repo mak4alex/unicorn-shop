@@ -25,15 +25,19 @@ export default function cart(state = initialState, action) {
         return newlineItems;
       });
     case CHANGE_PRODUCT_COUNT:
-      return state.get('lineItems').map(lineItem => {
-        if (lineItem.product.id === action.productId) {
-          lineItem.count.set(action.count);
-        }
-        return lineItem;
-      });
+      return state.updateIn(['lineItems'], lineItems =>
+        lineItems.map(lineItem => {
+          if (lineItem.getIn(['product', 'id']) === action.productId) {
+            return lineItem.set('count', action.count);
+          }
+          return lineItem;
+        })
+      );
     case REMOVE_PRODUCT_FROM_CART:
-      return state.get('lineItems').filter(lineItem =>
-        lineItem.product.id !== action.productId
+      return state.updateIn(['lineItems'], lineItems =>
+        lineItems.filter(lineItem =>
+          lineItem.getIn(['product', 'id']) !== action.productId
+        )
       );
     default:
       return state;
