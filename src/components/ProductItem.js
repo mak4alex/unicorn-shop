@@ -31,7 +31,7 @@ export default class ProductItem extends Component {
         <p>{product.price}</p>
         <p>
           <input type="number" min="1" step="1" value={this.state.count}
-            onChange={this.changeCount} key={this.state.timestamp}
+            onChange={this.changeCount}
           />
           <button onClick={this.addProductToCart}>Add to cart</button>
         </p>

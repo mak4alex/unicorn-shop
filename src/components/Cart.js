@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 
 export default class Cart extends Component {
@@ -40,6 +41,11 @@ export default class Cart extends Component {
               );
             })
           }
+          <div>
+            <span>Total: {this.props.cart.get('total')}</span>
+            <Link to={'/checkout'}>Checkout</Link>
+            <button onClick={this.props.clearCart}>Empty</button>
+          </div>
         </div>
       </div>
     );

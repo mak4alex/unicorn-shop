@@ -7,3 +7,4 @@ export { default as CategoryPage } from './CategoryPage';
 export { default as ProductsPage } from './ProductsPage';
 export { default as NotFoundPage } from './NotFoundPage';
 export { default as Cart } from './Cart';
+export { default as CheckoutPage } from './CheckoutPage';
