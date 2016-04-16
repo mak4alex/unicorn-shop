@@ -9,7 +9,7 @@ export default class Cart extends Component {
     this.changeCount = this.changeCount.bind(this);
   }
 
-  removeProductFromCart() {
+  removeProductFromCart(lineItem) {
     this.props.removeProductFromCart(lineItem.getIn(['product', 'id']));
   }
 
@@ -33,7 +33,9 @@ export default class Cart extends Component {
                   {product.get('title')} { ' x ' }
                   <input type="number" min="1" step="1" value={lineItem.get('count')}
                     onChange={ (e) => this.changeCount(e, product.get('id')) } />
-                  <button onClick={this.removeProductFromCart}>Delete</button>
+                  <button onClick={ (e) => this.removeProductFromCart(lineItem)}>
+                    Delete
+                  </button>
                 </p>
               );
             })
