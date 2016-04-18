@@ -8,3 +8,6 @@ export { default as ProductsPage } from './ProductsPage';
 export { default as NotFoundPage } from './NotFoundPage';
 export { default as Cart } from './Cart';
 export { default as CheckoutPage } from './CheckoutPage';
+export { default as LoginPage } from './LoginPage';
+export { default as SignupPage } from './SignupPage';
+export { default as ProfilePage } from './ProfilePage';

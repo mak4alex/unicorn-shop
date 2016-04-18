@@ -28,4 +28,4 @@ note: jsdom >= v4.0 can not work on node 0.x
 
 ## License
 
-MIT © [Alexander Maksimovich](http://example.com)
+MIT © [Alexander Maksimovich](http://github.com/mak4alex)

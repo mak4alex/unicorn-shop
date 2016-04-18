@@ -7,8 +7,11 @@ import { persistState } from 'redux-devtools';
 import rootReducer from '../reducers';
 import DevTools from '../containers/DevTools';
 import immutablejs from 'redux-storage-decorator-immutablejs';
-import filter from 'redux-storage-decorator-filter'
+import filter from 'redux-storage-decorator-filter';
 import * as storage from 'redux-storage';
+
+import { ADD_PRODUCT_TO_CART, REMOVE_PRODUCT_FROM_CART,
+         CHANGE_PRODUCT_COUNT, CLEAR_CART } from './../constants';
 
 const logger = createLogger({
   level: 'info',
@@ -30,7 +33,9 @@ engine = filter(engine, [
   ['cart'],
 ]);
 
-const storeMiddleware = storage.createMiddleware(engine);
+const storeMiddleware = storage.createMiddleware(engine, [],
+  [ADD_PRODUCT_TO_CART, REMOVE_PRODUCT_FROM_CART,
+    CHANGE_PRODUCT_COUNT, CLEAR_CART]);
 
 
 /**

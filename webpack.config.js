@@ -37,6 +37,7 @@ module.exports = {
       loaders: ['style', 'css', 'sass'],
       exclude: /node_modules/,
     },
+    { test: /\.css$/, loaders: ['style', 'css'] },
     {
       test: /bootstrap-sass[\/\\]assets[\/\\]javascripts[\/\\]/,
       loader: 'imports?jQuery=jquery',
