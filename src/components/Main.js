@@ -10,12 +10,12 @@ export default class Main extends Component {
   };
 
   render() {
-    const { category, fetchMenuCategory } = this.props;
+    const { category, fetchMenuCategory, auth } = this.props;
 
     return (
       <div className="container-fluid">
           <AuthGlobals />
-          <Header />
+          <Header auth={auth} />
           <CategoryNav category={category} fetchMenuCategory={fetchMenuCategory} />
           <main>{this.props.children}</main>
           <Footer />

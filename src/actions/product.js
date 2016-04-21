@@ -26,7 +26,6 @@ export const getProductErr = (data) => {
 
 export function fetchProducts({ categoryId = 1, page = 1 } = {}) {
   return function (dispatch) {
-    console.log('fetchProducts');
     dispatch(getProductReq());
 
     return fetch(`${API_URL}/categories/${categoryId}/products?page=${page}`)

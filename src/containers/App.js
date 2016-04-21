@@ -3,11 +3,14 @@ import { connect } from 'react-redux';
 import Main from '../components/Main';
 import * as Actions from '../actions/category';
 
+
 function mapStateToProps(state) {
   return {
-    category: state.category
+    category: state.category,
+    auth: state.auth,
   };
 }
+
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(Actions, dispatch);

@@ -9,38 +9,36 @@ import DevTools from '../containers/DevTools';
 import immutablejs from 'redux-storage-decorator-immutablejs';
 import filter from 'redux-storage-decorator-filter';
 import * as storage from 'redux-storage';
-
 import { ADD_PRODUCT_TO_CART, REMOVE_PRODUCT_FROM_CART,
-         CHANGE_PRODUCT_COUNT, CLEAR_CART } from './../constants';
+         CHANGE_PRODUCT_COUNT, CLEAR_CART, EMAIL_SIGN_IN_COMPLETE
+         } from './../constants';
+import createEngine from 'redux-storage-engine-localstorage';
+
 
 const logger = createLogger({
   level: 'info',
   collapsed: true,
 });
 
+
 const router = routerMiddleware(browserHistory);
-
 const reducer = storage.reducer(rootReducer);
-
-import createEngine from 'redux-storage-engine-localstorage';
 let engine = createEngine('unicorn-shop');
-
-engine = immutablejs(engine, [
-  ['cart'],
-]);
 
 engine = filter(engine, [
   ['cart'],
 ]);
 
+engine = immutablejs(engine, [
+  ['cart'],
+]);
+
+
 const storeMiddleware = storage.createMiddleware(engine, [],
   [ADD_PRODUCT_TO_CART, REMOVE_PRODUCT_FROM_CART,
-    CHANGE_PRODUCT_COUNT, CLEAR_CART]);
+    CHANGE_PRODUCT_COUNT, CLEAR_CART, EMAIL_SIGN_IN_COMPLETE]);
 
 
-/**
- * Creates a preconfigured store.
- */
 export default function configureStore(initialState) {
   const store = createStore(
     reducer,

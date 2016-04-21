@@ -13,9 +13,11 @@ export default (
     <Route path="/contact" component={ContactPage} />
     <Route path="/login" component={LoginPage} />
     <Route path="/signup" component={SignupPage} />
-    <Route path="/profile" component={ProfilePage} onEnter={requireAuth} />
+    <Route path="/profile" component={ProfilePage} />
     <Route path="/category/:categoryId" component={CategoryPage} />
     <Route path="/checkout" component={CheckoutPage} />
     <Route path="*" component={NotFoundPage} />
   </Route>
 );
+
+// onEnter={requireAuth}
