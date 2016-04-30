@@ -11,6 +11,7 @@ store.dispatch(configure(
     apiUrl: API_URL,
     signOutPath: '/user/sign_out',
     emailSignInPath: '/user/sign_in',
+    emailRegistrationPath: '/user',
   }
 )).then(() => {
   // your store should now have the current user. now render your

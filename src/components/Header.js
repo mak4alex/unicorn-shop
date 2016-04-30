@@ -19,7 +19,9 @@ export default class Header extends Component {
             <li>{ isSignedIn ? (<Link to={'/profile'}>Profile</Link>) :
                                (<Link to={'/login'}>Login</Link>) }
             </li>
-            { isSignedIn ? (<li><SignOutButton /></li>) : (<span></span>) }
+            <li>{ isSignedIn ? (<SignOutButton />) :
+                               (<Link to={'/signup'}>Sing Up</Link>) }
+            </li>
           </ul>
         </nav>
         <Cart />

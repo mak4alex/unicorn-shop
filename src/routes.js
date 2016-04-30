@@ -3,7 +3,6 @@ import { Route } from 'react-router';
 import App from './containers/App';
 import { HomePage, CategoryPage, AboutPage, ContactPage, CheckoutPage,
           NotFoundPage, SignupPage, LoginPage, ProfilePage } from './containers';
-import { requireAuth } from './utils';
 
 
 export default (
@@ -19,5 +18,3 @@ export default (
     <Route path="*" component={NotFoundPage} />
   </Route>
 );
-
-// onEnter={requireAuth}
