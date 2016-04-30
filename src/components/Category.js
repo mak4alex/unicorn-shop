@@ -12,41 +12,46 @@ export default class Category extends Component {
       categoryId: props.params.categoryId,
       page: 1,
     };
-    this.getProducts = this.getProducts.bind(this);
+    this.fetchData = this.fetchData.bind(this);
     this.changePage = this.changePage.bind(this);
   }
 
-  getProducts() {
+  fetchData() {
     this.props.fetchProducts(this.params);
+    this.props.fetchCategory(this.params);
   }
+
 
   changePage(page) {
     this.params.page = page;
-    this.getProducts();
+    this.fetchData();
   }
 
   componentDidMount() {
-    this.getProducts();
+    this.fetchData();
   }
 
 
   componentWillReceiveProps(props) {
     if (this.params.categoryId !== props.params.categoryId) {
       this.params.categoryId = props.params.categoryId;
-      this.getProducts();
+      this.fetchData();
     }
   }
 
-  render() {
-    const categoryId = this.props.params.categoryId;
-    const { products } = this.props;
-
+  render() { 
+    const { products, category } = this.props;
+    const currentCaregory = category.get('current');
 
     return (
       <div>
-        <h1>CategoryPage, {categoryId}</h1>
+        <div className="page-header">
+          <h1>{currentCaregory.title}</h1>
+          <p>{currentCaregory.description}</p>
+        </div>
         <ProductList addProductToCart={this.props.addProductToCart}
-          products={products} />
+          products={products}
+        />
         <Pagination handler={this.changePage} meta={products.get('meta')} />
       </div>
     );

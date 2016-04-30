@@ -8,8 +8,8 @@ export default class CategoryNav extends Component {
   }
 
   render() {
-    const isFetching = this.props.category.get('isFetching');
-    const categories = this.props.category.get('entities');
+    const isFetching = this.props.category.get('isFetchingMenu');
+    const categories = this.props.category.get('menuCategories');
     const loadingPanel = (<div><h1>loading...</h1></div>);
 
     return (
