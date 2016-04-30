@@ -17,10 +17,12 @@ export default class Main extends Component {
       <div className="container-fluid">
           <AuthGlobals />
           <Header auth={auth} />
-          <Cart />
-          <div className="row">     
+          <div className="row">
             <div className="col-sm-3">
-              <CategoryNav category={category} fetchMenuCategory={fetchMenuCategory} />
+              <div className="row">
+                <Cart />
+                <CategoryNav category={category} fetchMenuCategory={fetchMenuCategory} />
+              </div>
             </div>
             <div className="col-sm-9">
               <main>{this.props.children}</main>

@@ -18,7 +18,7 @@ class LoginPage extends Component {
         <div className="page-header">
           <h1>Login Form</h1>
         </div>
-        <EmailSignInForm />;
+        <EmailSignInForm />
       </div>
     );
   }

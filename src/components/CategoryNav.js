@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import activeComponent from 'react-router-active-component';
-
+import { Link } from 'react-router';
 
 export default class CategoryNav extends Component {
 
@@ -12,7 +11,6 @@ export default class CategoryNav extends Component {
     const isFetching = this.props.category.get('isFetching');
     const categories = this.props.category.get('entities');
     const loadingPanel = (<div><h1>loading...</h1></div>);
-    const NavLink = activeComponent('li');
 
     return (
       <div className="panel-group" id="categories">
@@ -22,7 +20,7 @@ export default class CategoryNav extends Component {
               <div key={topCat.id} className="panel panel-default">
                 <div className="panel-heading">
                   <h4 className="panel-title">
-                    <a data-toggle="collapse" data-parent="#categories" href={`#${topCat.id}`}>              
+                    <a data-toggle="collapse" data-parent="#categories" href={`#${topCat.id}`}>            
                       {topCat.title}
                     </a>
                   </h4>
@@ -32,9 +30,10 @@ export default class CategoryNav extends Component {
                     {
                       topCat.subcategories.map(subCat => {
                         return (
-                          <NavLink key={subCat.id} to={`/category/${subCat.id}`} className="list-group-item">                         
+                          <Link key={subCat.id} to={`/category/${subCat.id}`} 
+                            className="list-group-item" activeClassName="active"> 
                             {subCat.title}
-                          </NavLink>
+                          </Link>
                         );
                       })
                     }
