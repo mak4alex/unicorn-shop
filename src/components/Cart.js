@@ -20,31 +20,46 @@ export default class Cart extends Component {
 
   render() {
     const lineItems = this.props.cart.get('lineItems');
+    const total = this.props.cart.get('total');
 
     return (
-      <div>
-        <h3>Cart</h3>
-        <div>
+      <div className="panel panel-default">
+        <div className="panel-heading">
+          <h3 className="panel-title text-center">Shopping Cart{' '}
+            <span className="label label-default">{total}$</span>        
+          </h3>
+        </div>
+        <div className="panel-body">          
           {
             lineItems.map((lineItem, i) => {
               const product = lineItem.get('product');
 
               return (
-                <p key={i}>
-                  {product.get('title')} { ' x ' }
-                  <input type="number" min="1" step="1" value={lineItem.get('count')}
-                    onChange={ (e) => this.changeCount(e, product.get('id')) } />
-                  <button onClick={ (e) => this.removeProductFromCart(lineItem)}>
-                    Delete
-                  </button>
-                </p>
+                <div key={i} className="row">
+                  <div className="input-group">
+                    <span className="input-group-addon">{product.get('title')}</span>
+                    <input type="number" className="form-control" min="1" step="1" value={lineItem.get('count')}
+                      onChange={ (e) => this.changeCount(e, product.get('id')) } 
+                    />
+                    <span className="input-group-btn">
+                      <button className="btn btn-default" onClick={(e) => this.removeProductFromCart(lineItem)}>
+                        <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                      </button>
+                    </span>
+                  </div>
+                </div>
               );
             })
           }
-          <div>
-            <span>Total: {this.props.cart.get('total')}</span>
-            <Link to={'/checkout'}>Checkout</Link>
-            <button onClick={this.props.clearCart}>Empty</button>
+        </div>
+        <div className="panel-footer">
+          <div className="btn-group btn-group-justified" role="group">
+            <div className="btn-group" role="group">
+              <Link to={'/checkout'} className="btn btn-default">Checkout</Link>
+            </div>
+            <div className="btn-group" role="group">
+              <button className="btn btn-default" onClick={this.props.clearCart}>Empty</button>
+            </div>
           </div>
         </div>
       </div>
