@@ -3,6 +3,7 @@ import { AuthGlobals } from 'redux-auth/bootstrap-theme';
 import Header from './Header';
 import CategoryNav from './CategoryNav';
 import Footer from './Footer';
+import Cart from './../containers/Cart';
 
 export default class Main extends Component {
   static propTypes = {
@@ -16,8 +17,15 @@ export default class Main extends Component {
       <div className="container-fluid">
           <AuthGlobals />
           <Header auth={auth} />
-          <CategoryNav category={category} fetchMenuCategory={fetchMenuCategory} />
-          <main>{this.props.children}</main>
+          <Cart />
+          <div className="row">     
+            <div className="col-sm-3">
+              <CategoryNav category={category} fetchMenuCategory={fetchMenuCategory} />
+            </div>
+            <div className="col-sm-9">
+              <main>{this.props.children}</main>
+            </div>
+          </div>
           <Footer />
       </div>
     );

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import activeComponent from 'react-router-active-component';
 
 
 export default class CategoryNav extends Component {
@@ -8,46 +8,45 @@ export default class CategoryNav extends Component {
     this.props.fetchMenuCategory();
   }
 
-  render () {
+  render() {
     const isFetching = this.props.category.get('isFetching');
     const categories = this.props.category.get('entities');
+    const loadingPanel = (<div><h1>loading...</h1></div>);
+    const NavLink = activeComponent('li');
 
-    if (isFetching) {
-      return (
-        <div>
-          <h1>loading</h1>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          {
-            categories.map(topCat => {
-              return (
-                <ul key={topCat.id}>
-                  <li>{topCat.title}</li>
-                  <li>
-                    <ul className="">
-                      {
-                        topCat.subcategories.map(subCat => {
-                          return (
-                            <li key={subCat.id}>
-                              <Link to={`/category/${subCat.id}`}>
-                                {subCat.title}
-                              </Link>
-                            </li>
-                          );
-                        })
-                      }
-                    </ul>
-                  </li>
-                </ul>
-              );
-            })
-          }
-        </div>
-      );
-    }
+    return (
+      <div className="panel-group" id="categories">
+        {
+          categories.map(topCat => {
+            return (
+              <div key={topCat.id} className="panel panel-default">
+                <div className="panel-heading">
+                  <h4 className="panel-title">
+                    <a data-toggle="collapse" data-parent="#categories" href={`#${topCat.id}`}>
+                      <span className="glyphicon glyphicon-folder-close"></span>
+                      {topCat.title}
+                    </a>
+                  </h4>
+                </div>
+                <div id={`${topCat.id}`} className="panel-collapse collapse">
+                  <ul className="list-group">
+                    {
+                      topCat.subcategories.map(subCat => {
+                        return (
+                          <NavLink key={subCat.id} to={`/category/${subCat.id}`} className="list-group-item">                         
+                            {subCat.title}
+                          </NavLink>
+                        );
+                      })
+                    }
+                  </ul>
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+    );
+
   }
-
 }

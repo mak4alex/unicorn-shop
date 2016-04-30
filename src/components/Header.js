@@ -1,33 +1,46 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import Cart from './../containers/Cart';
 import { SignOutButton } from 'redux-auth';
+import activeComponent from 'react-router-active-component';
+
 
 export default class Header extends Component {
 
   render() {
-    let isSignedIn = this.props.auth.getIn(['user', 'isSignedIn']);
+    const isSignedIn = this.props.auth.getIn(['user', 'isSignedIn']);
+    const NavLink = activeComponent('li');
 
     return (
       <header>
-        <h1>Header here</h1>
-        <nav>
-          <ul>
-            <li><Link to={'/'}>Home</Link></li>
-            <li><Link to={'/about'}>About</Link></li>
-            <li><Link to={'/contact'}>Contact</Link></li>
-            <li>{ isSignedIn ? (<Link to={'/profile'}>Profile</Link>) :
-                               (<Link to={'/login'}>Login</Link>) }
-            </li>
-            <li>{ isSignedIn ? (<SignOutButton />) :
-                               (<Link to={'/signup'}>Sing Up</Link>) }
-            </li>
-          </ul>
+        <nav className="navbar navbar-default">
+          <div className="container-fluid">
+            <div className="navbar-header">
+              <button type="button" className="navbar-toggle collapsed" 
+                data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+                <span className="sr-only">Toggle navigation</span>
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
+              </button>
+              <Link to="/" className="navbar-brand">Unicorn Shop</Link>
+            </div>
+            <div className="collapse navbar-collapse" id="navbar-collapse">
+              <ul className="nav navbar-nav">
+                <NavLink to="/">Home</NavLink>
+                <NavLink to="/about">About</NavLink>
+                <NavLink to="/contact">Contact</NavLink>
+              </ul>
+              <ul className="nav navbar-nav navbar-right">
+                { isSignedIn ? (<NavLink to={'/profile'}>Profile</NavLink>) :
+                               (<NavLink to={'/login'}>Login</NavLink>) }
+                { isSignedIn ? (<li><SignOutButton icon=""
+                                      className="btn navbar-btn" /></li>) :
+                               (<NavLink to={'/signup'}>Sing Up</NavLink>) }
+              </ul>
+            </div>
+          </div>
         </nav>
-        <Cart />
       </header>
     );
   }
-
 }
-
