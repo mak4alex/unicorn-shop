@@ -15,8 +15,7 @@ export default class ProductList extends Component {
     }
     else {
       template = (
-        <div>
-          <h2>ProductList</h2>
+        <div>     
           {
             products.get('entities').map(product => {
               return (<ProductItem key={product.id} product={product}
