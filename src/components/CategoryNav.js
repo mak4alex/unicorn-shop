@@ -22,8 +22,7 @@ export default class CategoryNav extends Component {
               <div key={topCat.id} className="panel panel-default">
                 <div className="panel-heading">
                   <h4 className="panel-title">
-                    <a data-toggle="collapse" data-parent="#categories" href={`#${topCat.id}`}>
-                      <span className="glyphicon glyphicon-folder-close"></span>
+                    <a data-toggle="collapse" data-parent="#categories" href={`#${topCat.id}`}>              
                       {topCat.title}
                     </a>
                   </h4>

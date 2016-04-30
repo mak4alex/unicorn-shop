@@ -13,7 +13,14 @@ class LoginPage extends Component {
   }
 
   render() {
-    return <EmailSignInForm />;
+    return (
+      <div>
+        <div className="page-header">
+          <h1>Login Form</h1>
+        </div>
+        <EmailSignInForm />;
+      </div>
+    );
   }
 
 }

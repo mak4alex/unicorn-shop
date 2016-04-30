@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { EmailSignUpForm } from "redux-auth/bootstrap-theme";
+import { EmailSignUpForm } from 'redux-auth/bootstrap-theme';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { redirect } from './../actions/user';
@@ -12,11 +12,13 @@ class SignupPage extends Component {
       props.redirect();
     }
   }
-  
+
   render() {
     return (
       <div>
-        <h1>SignupPage</h1>
+        <div className="page-header">
+          <h1>Sign Up Form</h1>
+        </div>
         <EmailSignUpForm />
       </div>
     );
