@@ -4,7 +4,7 @@ export default class Footer extends Component {
 
 	render () {
 		return (
-			 <footer>Footer here</footer>
+			 <footer>Change footer</footer>
 		);
 	}
 
