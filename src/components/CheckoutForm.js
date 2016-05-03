@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Formsy from 'formsy-react';
+import FRC from 'formsy-react-components';
 
 
 export default class CheckoutForm extends Component {
@@ -6,31 +8,13 @@ export default class CheckoutForm extends Component {
   constructor(props) {
     super(props);
     this.submitForm = this.submitForm.bind(this);
-    this.payTypeInput = null;
-    this.deliveryTypeInput = null;
-    this.emailInput = null;
-    this.nameInput = null;
-    this.phoneInput = null;
-    this.countryInput = null;
-    this.cityInput = null;
-    this.addressInput = null;
   }
 
-  submitForm(e) {
-    e.preventDefault();
-    const contact = {      
-      email: this.emailInput.value,
-      name: this.nameInput.value,
-      phone: this.phoneInput.value,
-      country: this.countryInput.value,
-      city: this.cityInput.value,
-      address: this.addressInput.value,     
-    };
-
+  submitForm(input) {
     const data = this.props.prepareCart();
-    data.order.pay_type = this.payTypeInput.value;
-    data.order.delivery_type = this.deliveryTypeInput.value;
-    data.order.contact = contact;
+    data.order.pay_type = input.pay_type;
+    data.order.delivery_type = input.delivery_type;
+    data.order.contact = input.contact;
 
     console.log(data);
 
@@ -38,55 +22,87 @@ export default class CheckoutForm extends Component {
   }
 
   render() {
+    const payTypeOptions = [
+      { value: '', label: 'Please select...' },
+      { value: 'cash', label: 'By Cash' },
+      { value: 'card', label: 'By Card' },
+    ];
+
+    const deliveryOptions = [
+      { value: '', label: 'Please select...' },
+      { value: 'courier', label: 'By Courier' },
+      { value: 'mail', label: 'By Mail' },
+      { value: 'self_removal', label: 'By Self' },
+    ];
+
     return (
-      <form onSubmit={this.submitForm}>
-        <div>
-          <label htmlFor="pay-type">Pay Type:</label>
-          <select id="pay-type" ref={c => this.payTypeInput = c}>
-            <option value="">Select...</option>
-            <option value="cash">By Cash</option>
-            <option value="card">By Card</option>
-          </select>
+      <Formsy.Form onValidSubmit={this.submitForm} ref="myform" validatePristine>
+        <fieldset>
+          <legend>Order Options</legend>
+          <FRC.Select
+            name="pay_type"
+            label="Pay Type:"
+            help="This is a required select element."
+            options={payTypeOptions}
+            required
+          />
+          <FRC.Select
+            name="delivery_type"
+            label="Delivery Type:"
+            help="This is a required select element."
+            options={deliveryOptions}
+            required
+          />
+        </fieldset>
+        <fieldset>
+          <legend>Contacts</legend>
+          <FRC.Input
+            name="contact[email]" value="" label="Email:"
+            type="email" placeholder="Type email here..." required
+            validations={{
+              isEmail: true,
+            }}
+            validationErrors={{
+              isEmail: 'This doesn’t look like a valid email address.',
+            }}
+          />
+          <FRC.Input
+            name="contact[name]" value="" label="Name:"
+            type="text" placeholder="Type name here..." required
+          />
+          <FRC.Input
+            name="contact[phone]" value="" label="Phone:"
+            type="text" placeholder="Type phone here..." required
+          />
+        </fieldset>
+        <fieldset>
+          <legend>Address Info</legend>
+          <FRC.Input
+            name="contact[country]" value="" label="Country:"
+            type="text" placeholder="Type country here..." required
+          />
+          <FRC.Input
+            name="contact[city]" value="" label="City:"
+            type="text" placeholder="Type city here..." required
+          />
+          <FRC.Textarea
+            name="contact[address]"
+            label="Address:"
+            placeholder="Type street and house number here..."
+            required
+          />
+        </fieldset>
+        <div className="btn-group btn-group-lg pull-right" role="group">
+          <button className="btn btn-default" type="reset">
+            Reset{' '}
+            <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
+          </button>
+          <button className="btn btn-primary" type="submit">
+            Order{' '}
+            <span className="glyphicon glyphicon-ok" aria-hidden="true"></span>
+          </button>
         </div>
-        <div>
-          <label htmlFor="delivery-type">Delivery Type:</label>
-          <select id="delivery-type" ref={c => this.deliveryTypeInput = c}>
-            <option value="">Select...</option>
-            <option value="courier">By Courier</option>
-            <option value="mail">By Mail</option>
-            <option value="self_removal">By Self</option>
-          </select>
-        </div>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input type="text" id="email" ref={c => this.emailInput = c} />
-        </div>
-        <div>
-          <label htmlFor="name">Name:</label>
-          <input type="text" id="name" ref={c => this.nameInput = c} />
-        </div>
-        <div>
-          <label htmlFor="phone">Phone:</label>
-          <input type="text" id="phone" ref={c => this.phoneInput = c} />
-        </div>
-        <div>
-          <label htmlFor="country">Country:</label>
-          <input type="text" id="country" ref={c => this.countryInput = c} />
-        </div>
-        <div>
-          <label htmlFor="city">City:</label>
-          <input type="text" id="city" ref={c => this.cityInput = c} />
-        </div>
-        <div>
-          <label htmlFor="address">Address:</label>
-          <br/>
-          <textarea id="address" ref={c => this.addressInput = c}></textarea>
-        </div>
-        <div>
-          <button type="submit">Order</button>
-          <button type="reset">Reset</button>
-        </div>
-      </form>
+      </Formsy.Form>
     );
   }
 }

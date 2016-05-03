@@ -75,6 +75,8 @@
   "dependencies": {
     "bootstrap-sass": "^3.3.6",
     "classnames": "^2.2.4",
+    "formsy-react": "^0.18.0",
+    "formsy-react-components": "^0.7.1",
     "immutable": "^3.8.0",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^2.2.3",
