@@ -25,16 +25,25 @@ export default class ProductItem extends Component {
     const { product } = this.props;
 
     return (
-      <div>
-        <h3>{product.title}</h3>
-        <p>{product.description}</p>
-        <p>{product.price}</p>
-        <p>
-          <input type="number" min="1" step="1" value={this.state.count}
-            onChange={this.changeCount}
-          />
-          <button onClick={this.addProductToCart}>Add to cart</button>
-        </p>
+      <div className="panel panel-primary">
+        <div className="panel-heading">
+          <h3 className="panel-title">{product.title}</h3>
+        </div>
+        <div className="panel-body">
+          <div className="row">
+            <div className="col-sm-6">
+              <img src={product.images[0].file} alt={product.title} className="img-thumbnail" />
+            </div>
+            <div className="col-sm-6">
+              <h3>{product.price}$</h3>
+              <p>{product.description}</p>
+              <input className="form-control" type="number" min="1" step="1" max={product.quantity} value={this.state.count}
+                onChange={this.changeCount}
+              />
+              <button className="btn btn-lg btn-primary" onClick={this.addProductToCart}>Add to cart</button>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
