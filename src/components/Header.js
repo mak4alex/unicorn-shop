@@ -12,7 +12,7 @@ export default class Header extends Component {
 
     return (
       <header>
-        <nav className="navbar navbar-default">
+        <nav className="navbar navbar-inverse">
           <div className="container-fluid">
             <div className="navbar-header">
               <button type="button" className="navbar-toggle collapsed" 
@@ -25,6 +25,7 @@ export default class Header extends Component {
               <Link to="/" className="navbar-brand">Unicorn Shop</Link>
             </div>
             <div className="collapse navbar-collapse" id="navbar-collapse">
+      
               <ul className="nav navbar-nav">
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/about">About</NavLink>
