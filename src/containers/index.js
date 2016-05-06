@@ -11,3 +11,7 @@ export { default as CheckoutPage } from './CheckoutPage';
 export { default as LoginPage } from './LoginPage';
 export { default as SignupPage } from './SignupPage';
 export { default as ProfilePage } from './ProfilePage';
+export { default as ProfileViewPage } from './ProfileViewPage';
+export { default as ProfileUpdatePage } from './ProfileUpdatePage';
+export { default as ProfileHistoryPage } from './ProfileHistoryPage';
+export { default as ProfileFavouritesPage } from './ProfileFavouritesPage';

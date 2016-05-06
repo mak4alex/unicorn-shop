@@ -6,26 +6,23 @@ export default class ProductList extends Component {
   static propTypes = {};
 
   render() {
-    const { products } = this.props;
-  
+    const { products, isFetching, addProductToCart } = this.props;
     let template = null;
-   
-    if (products.get('isFetching')) {
+
+    if (isFetching) {
       template = (<h1>Loading...</h1>);
-    }
-    else {
+    } else {
       template = (
-        <div>     
+        <div>
           {
-            products.get('entities').map(product => {
-              return (<ProductItem key={product.id} product={product}
-                        addProductToCart={this.props.addProductToCart} />);
-            })
+            products.map(product =>
+              (<ProductItem key={product.id} product={product}
+                addProductToCart={addProductToCart} />)
+            )
           }
         </div>
       );
     }
-
     return template;
   }
 }

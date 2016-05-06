@@ -50,7 +50,7 @@ export default class Category extends Component {
           <p>{currentCaregory.description}</p>
         </div>
         <ProductList addProductToCart={this.props.addProductToCart}
-          products={products}
+          products={products.get('entities')} isFetching={products.get('isFetching')}
         />
         <Pagination handler={this.changePage} meta={products.get('meta')} />
       </div>

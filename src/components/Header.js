@@ -34,7 +34,7 @@ export default class Header extends Component {
                 { isSignedIn ? (<NavLink to={'/profile'}>Profile</NavLink>) :
                                (<NavLink to={'/login'}>Login</NavLink>) }
                 { isSignedIn ? (<li><SignOutButton icon=""
-                                      className="btn navbar-btn" /></li>) :
+                                      className="btn btn-link navbar-btn" /></li>) :
                                (<NavLink to={'/signup'}>Sing Up</NavLink>) }
               </ul>
             </div>
