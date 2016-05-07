@@ -15,7 +15,7 @@ export default class Header extends Component {
         <nav className="navbar navbar-inverse">
           <div className="container-fluid">
             <div className="navbar-header">
-              <button type="button" className="navbar-toggle collapsed" 
+              <button type="button" className="navbar-toggle collapsed"
                 data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
                 <span className="sr-only">Toggle navigation</span>
                 <span className="icon-bar"></span>
@@ -35,7 +35,7 @@ export default class Header extends Component {
                 { isSignedIn ? (<NavLink to={'/profile'}>Profile</NavLink>) :
                                (<NavLink to={'/login'}>Login</NavLink>) }
                 { isSignedIn ? (<li><SignOutButton icon=""
-                                      className="btn navbar-btn" /></li>) :
+                                      className="btn btn-link navbar-btn" /></li>) :
                                (<NavLink to={'/signup'}>Sing Up</NavLink>) }
               </ul>
             </div>

@@ -5,6 +5,8 @@ import { fromJS } from 'immutable';
 import category from './category';
 import product from './product';
 import cart from './cart';
+import favourite from './favourite';
+
 
 const auth = (state = {}, action) => {
   return authStateReducer(fromJS(state), action);
@@ -13,6 +15,7 @@ const auth = (state = {}, action) => {
 const rootReducer = combineReducers({
   auth,
   cart,
+  favourite,
   category,
   product,
   routing,

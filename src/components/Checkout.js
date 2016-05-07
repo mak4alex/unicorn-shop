@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CheckoutForm from './CheckoutForm';
+import CheckoutTable from './CheckoutTable';
 
 export default class Checkout extends Component {
 
@@ -29,42 +30,17 @@ export default class Checkout extends Component {
 
     return (
       <div>
-        <h1>CheckoutPage</h1>
-        <table>
-          <thead>
-            <tr>
-              <th>#</th><th>Product</th><th>Price</th><th>Count</th><th>Sum Price</th><th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-          {
-            lineItems.map((lineItem, i) => {
-              const product = lineItem.product;
-              return (
-                <tr key={i + 1}>
-                  <td>{i + 1}</td>
-                  <td>{product.title}</td>
-                  <td>{product.price}</td>
-                  <td>
-                    <input type="number" min="1" step="1" value={lineItem.count}
-                      onChange={ (e) => this.changeCount(e, product.id) }
-                    />
-                  </td>
-                  <td>{product.price * lineItem.count}</td>
-                  <td>
-                    <button>Delete</button>
-                  </td>
-                </tr>
-              );
-            })
-          }
-          </tbody>
-        </table>
-        <p>Total: {total}$</p>
-        <h3>Checkout Form</h3>
-        <CheckoutForm prepareCart={this.prepareCart}
-          postOrder={this.props.postOrder}
-        />
+        <div className="page-header">
+          <h1>Checkout Order</h1>
+        </div>
+        <CheckoutTable lineItems={lineItems} changeCount={this.changeCount} />
+        <div className="well text-center">
+          <h3>Total: {total}$</h3>
+        </div>
+        <div>
+          <h2>Checkout Form</h2>
+          <CheckoutForm prepareCart={this.prepareCart} postOrder={this.props.postOrder} />
+        </div>
       </div>
     );
   }

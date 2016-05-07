@@ -14,9 +14,11 @@ export default class Main extends Component {
     const { category, fetchMenuCategory, auth } = this.props;
 
     return (
-      <div className="container-fluid">
+      <div className="container">
           <AuthGlobals />
-          <Header auth={auth} />
+          <div className="row">
+            <Header auth={auth} />
+          </div>
           <div className="row">
             <div className="col-sm-3">
               <div className="row">
@@ -24,9 +26,9 @@ export default class Main extends Component {
                 <CategoryNav category={category} fetchMenuCategory={fetchMenuCategory} />
               </div>
             </div>
-            <div className="col-sm-9">
-              <main>{this.props.children}</main>
-            </div>
+            <main className="col-sm-9">
+              {this.props.children}
+            </main>
           </div>
           <Footer />
       </div>
